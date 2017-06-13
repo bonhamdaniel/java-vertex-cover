@@ -39,3 +39,29 @@ Java application that runs and compares various vertex cover algorithms.
 
   - Line 1 loops through all the potential vertex covers established by stage one of the algorithm.  Line two loops through the vertices of each of these potential vertex covers, allowing line 3 to remove all the edges incident on this current vertex.  Line 4 checks to see whether the edge removal from line 3 has led to a successful vertex cover.  If so, line 5 then determines whether or not this successful vertex cover is small enough to be the new minimum vertex cover.  If the new vertex cover is the new minimum, the min variable is set in line 6 and the index of the cover, in terms of possibleCovers, is set in line 7.
   - The two stages taken together successfully have the ability to determine the minimum vertex cover for a given graph and k value.
+
+- Testing and Results
+  - The following is a breakdown of test runs performed by the program.  For simplicity sake, all input data has been hardcoded into the program, however, this includes multiple graphs and various scenarios.  Each Graph in the program was tested by five separate Vertex Cover algorithms: Brute Force, Optimized Brute Force, First Solution, Greedy Cover, and Approx Cover.
+  - Test Run #1:
+    - The first graph in this test run consisted of Vertices (1, 2, 3, 5, 4) and Edges ([1,2], [1,3], [1,4], [1,5], [2,3], [2,4], [4,5]), with a k value of 5.  The various Vertex Cover algorithms were tested for normal use during this run, and performed as follows:
+      - Brute Force: found a minimum cover of [1, 2, 5] in 4 000 000 nanoseconds.
+      - Optimized Brute Force: found a minimum cover of [1, 2, 5] in 2 000 000 nanoseconds.
+      - First Solution: found an acceptable cover of [1, 2, 3, 5] in 1 000 000 nanoseconds.
+      - Greedy Cover: found a cover of [1, 2, 5] in 0 nanoseconds.
+      - Approx Cover: found a cover of [4, 5, 1, 3] in 0 nanoseconds.
+
+  - Test Run #2:
+    - The second graph in this test run consisted of Vertices (1, 2, 3, 4, 5, 6, 7) and Edges ([1,2], [2,3], [3,4], [3,5], [4,5], [4,6], [4,7], [5,6]), with a k value of 6.  The various Vertex Cover algorithms were tested under a larger search space during this run, and performed as follows: 
+      - Brute Force: found a minimum cover of [2, 4, 5] in 33 000 000 nanoseconds.
+      - Optimized Brute Force: found a minimum cover of [2, 4, 5] in 13 000 000 nanoseconds.
+      - First Solution: found an acceptable cover of [1, 2, 3, 4, 5] in 3 000 000 nanoseconds.
+      - Greedy Cover: found a cover of [4, 2, 5] in 0 nanoseconds.
+      - Approx Cover: found a cover of [4, 6, 1, 2, 3, 5] in 0 nanoseconds.
+  - Test Run #3:
+    - The second graph in this test run consisted of Vertices (1, 2, 3, 4, 5, 6, 7, 8, 9) and Edges ([1,2], [2,3], [3,4], [3,5], [4,5], [4,6], [4,7], [5,6], [4,8], [5,9]), with a k value of 7.  The various Vertex Cover algorithms were tested under an even larger search space during this run, in order to really try to test the run times, and performed as follows: 
+      - Brute Force: found a minimum cover of [2, 4, 5] in 220 000 000 nanoseconds.
+      - Optimized Brute Force: found a minimum cover of [2, 4, 5] in 56 000 000 nanoseconds.
+      - First Solution: found an acceptable cover of [1, 2, 3, 4, 5] in 22 000 000 nanoseconds.
+      - Greedy Cover: found a cover of [4, 2, 5] in 0 nanoseconds.
+      - Approx Cover: found a cover of [4, 8, 1, 2, 5, 9] in 0 nanoseconds.
+  - It is easy to see that the run times for both Brute Force algorithms, but especially the original un-optimized version, grow much larger than the approximation algorithms as the search space becomes larger.  The tests showed that the Greedy and Approx algorithms were able to perform with run times not even significant enough to register a nanosecond in length.  It is easy to understand why this is the case, as the Brute Force algorithms are exponential, while the approximation algorithms are polynomial.
